@@ -131,7 +131,9 @@ class Integration::NationBuilder
       when 'validation_failed'
         e.response.parsed['validation_errors'][0]
       else
-        e.response.parsed['message']
+        output = e.response.parsed['message']
+        Airbrake.notify output
+        output
       end
     end
   end
